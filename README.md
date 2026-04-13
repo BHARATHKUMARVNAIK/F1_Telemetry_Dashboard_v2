@@ -19,7 +19,6 @@
 ### Speed Trace
 ![Speed Trace](./preview/Speed_Trace.png)
 
-
 ### Corner Analysis
 ![corner analysis](./preview/Corner_Analysis.png)
 
