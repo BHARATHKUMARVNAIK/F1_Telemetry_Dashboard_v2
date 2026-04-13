@@ -1,79 +1,129 @@
+
+
 # 🏎️ F1 Pit Wall Platform v2.0
 
-**A production-grade, multi-driver Formula 1 race-engineering analysis platform**
+**A production-grade Formula 1 telemetry and race strategy platform for multi-driver lap analysis, tyre modelling, and performance engineering.**
 
 [![React](https://img.shields.io/badge/React-18.3-61DAFB?logo=react)](https://react.dev)
 [![Vite](https://img.shields.io/badge/Vite-5.4-646CFF?logo=vite)](https://vitejs.dev)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green)](LICENSE)
-[![Zero Dependencies](https://img.shields.io/badge/Chart%20Libraries-Zero-red)](package.json)
+[![Visualization](https://img.shields.io/badge/Charts-Custom%20SVG-blue)](package.json)
 
-> Compare up to 5 drivers simultaneously. Analyze speed, throttle, brake, RPM, gear, tyre degradation, and lap delta. AI-generated corner insights. Full strategy recommendation engine. SVG track map with telemetry heatmap. All with zero external chart libraries.
+> Compare up to five drivers simultaneously across speed, throttle, brake, RPM, gear, lap delta, tyre degradation, corner performance, and pit strategy windows.  
+> Built with custom SVG telemetry visualizations, synchronized hover analysis, deterministic modelling, and FastF1-ready data integration.
+
+---
+
+## 📷 Preview
+
+### Speed Trace
+![Speed Trace](./preview/speed-trace.png)
+
+### Corner Analysis
+![corner analysis](./preview/Corner_Analysis.png)
+
+### corner by corner breakdown
+![corner breakdown](./preview/corner_by_corner_breakdown.png)
+
+### Track Details
+![Track Details](./preview/Track_details.png)
+
+### Track-breaking map
+![track breaking](./preview/Track_breaking_map.png)
+
+### Track gear change map
+![Track gear changes](./preview/Track_gear_Change_map.png)
+
+### Strategy 
+![strategy](./preview/Strategy.png)
+
+### Ai-Insight
+![ai-insight](./preview/Ai-insight.png)
+
+### winner prediction
+![winner prediction](./preview/Winners_predictions.png)
+
+---
+
+## ✨ Key Highlights
+
+- **Multi-driver telemetry comparison** for up to 5 drivers
+- **Synchronized hover state** across all visualizations
+- **Custom SVG rendering pipeline** with zero charting libraries
+- **Deterministic telemetry generation** using seeded modelling
+- **Tyre degradation simulation** with compound-specific wear curves
+- **Lap delta and corner-level time loss analysis**
+- **Strategy recommendation engine** with undercut/overcut scoring
+- **FastF1-ready data layer** for real session integration
+- **Low bundle overhead** through custom visualization primitives
 
 ---
 
 ## 🚀 Quick Start
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/f1-telemetry-platform.git
-cd f1-telemetry-platform
+git clone https://github.com/YOUR_USERNAME/F1_Telemetry_Dashboard_v2.git
+cd F1_Telemetry_Dashboard_v2
 npm install
-npm run dev          # → http://localhost:5173
-npm run build        # Production build → /dist
-npm run deploy       # Deploy to GitHub Pages
+npm run dev
+```
+
+Local development server:
+
+```text
+http://localhost:5173
+```
+
+### Production build
+```bash
+npm run build
+```
+
+### GitHub Pages deployment
+```bash
+npm run deploy
 ```
 
 ---
 
-## 📸 Features
+## 📊 Feature Modules
 
-| Tab | What it shows |
-|-----|--------------|
-| ⚡ **Speed Trace** | Multi-driver speed vs distance · DRS zones · Q3 lap time table |
-| 🎮 **Throttle & Brake** | Throttle %, brake pressure, RPM, gear selection — all synchronized |
-| ⏱ **Lap Delta** | Gap trace vs fastest driver · sector-by-sector breakdown |
-| 🗺 **Track Map** | SVG Bahrain circuit · speed/throttle/brake/gear/DRS overlay modes |
-| 🔴 **Tyre Model** | Per-driver compound degradation · fuel effect · rate comparison |
-| 📐 **Corner Analysis** | Min speed per corner · multi-driver bar chart · sortable table |
-| 🧠 **AI Insights** | Automated race-engineer recommendations · time loss heatmap |
-| ♟ **Strategy Engine** | Pit strategy scoring · Gantt timeline · undercut/overcut alerts |
-
-### Key capabilities
-- **Dynamic driver selection** — choose any 2–5 drivers from the full 2024 Bahrain Q3 grid
-- **Hover sync** — moving the cursor on any chart highlights the same track position on every other chart simultaneously
-- **Persistent color mapping** — each driver's color is consistent across all 8 tabs
-- **Zero chart libraries** — every visualization is a custom SVG component
-- **FastF1-ready** — swap the modelled data arrays for real telemetry without touching the UI layer
+| Module | Description |
+|---|---|
+| **Speed Trace** | Multi-driver speed vs distance with DRS zones and qualifying lap references |
+| **Throttle & Brake** | Synchronized throttle, brake, RPM, and gear telemetry channels |
+| **Lap Delta** | Gap accumulation trace with sector-by-sector time breakdown |
+| **Track Map** | SVG Bahrain circuit with telemetry overlay modes |
+| **Tyre Model** | Compound wear simulation with fuel-load impact |
+| **Corner Analysis** | Apex speed, braking point, and time-loss comparison |
+| **Insights Engine** | Model-driven corner recommendations and performance flags |
+| **Strategy Engine** | Pit window scoring, stint projection, and undercut modelling |
 
 ---
 
-## 🏗️ Architecture
+## 🏗️ System Architecture
 
-```
+```text
 src/
 ├── context/
-│   └── DashboardContext.jsx   ← shared state: selected drivers, hover sync, map mode
+│   └── DashboardContext.jsx
 │
 ├── data/
-│   ├── telemetry.js           ← multi-driver telemetry engine
-│   │                             speed waypoints · brake zones · throttle ramps
-│   │                             gear · RPM · tyre degradation · fuel model
-│   │                             lap delta · sector splits · real lap time scaling
-│   ├── circuit.js             ← Bahrain circuit: corners · DRS zones · SVG track path
-│   ├── analysis.js            ← corner insight engine: apex speed · braking point
-│   │                             throttle pickup · time-loss quantification
-│   └── strategy.js            ← strategy engine: stint pace prediction
-│                                 undercut scoring · pit window optimization
+│   ├── telemetry.js
+│   ├── circuit.js
+│   ├── analysis.js
+│   └── strategy.js
 │
 ├── utils/
-│   ├── math.js                ← smoothstep · seeded LCG · formatters
-│   └── colors.js              ← 11-driver persistent color palette
+│   ├── math.js
+│   └── colors.js
 │
 ├── components/
-│   ├── LineChart.jsx          ← reusable synchronized SVG line chart
-│   ├── TrackMap.jsx           ← SVG circuit with telemetry overlay
-│   ├── DriverSelector.jsx     ← multi-select dropdown with Q3 times
-│   ├── Header.jsx             ← sticky top bar
-│   ├── UI.jsx                 ← MetricCard · InfoCard · Legend · SeverityBadge
+│   ├── LineChart.jsx
+│   ├── TrackMap.jsx
+│   ├── DriverSelector.jsx
+│   ├── Header.jsx
+│   ├── UI.jsx
 │   └── tabs/
 │       ├── SpeedTrace.jsx
 │       ├── ThrottleBrake.jsx
@@ -84,129 +134,95 @@ src/
 │       ├── CornerInsights.jsx
 │       └── Strategy.jsx
 │
-├── App.jsx                    ← root + tab routing
-├── main.jsx                   ← React entry point
-└── index.css                  ← global dark theme
+├── App.jsx
+├── main.jsx
+└── index.css
 ```
-
-### Architectural decisions
-
-**React Context for hover sync** — When hovering the speed chart, all other charts need to display the crosshair at the same track distance. Lifting this into a context avoids prop-drilling 4 levels deep and ensures synchronization even if tabs are independently rendered.
-
-**Seeded LCG for deterministic data** — Every driver's telemetry uses a Linear Congruential Generator seeded from their driver code. The same seed always produces the same "noise", making charts reproducible across renders — critical for debugging and for any future snapshot testing.
-
-**Smoothstep interpolation** — Speed profiles are built from `~75 waypoints` per driver interpolated with `t² × (3−2t)`. This produces realistic S-curve transitions matching real F1 telemetry shape without requiring actual sensor data.
-
-**Physical lap time scaling** — After generating a raw speed profile, the engine scales all speeds by the ratio needed to match each driver's real 2024 Bahrain Q3 lap time. This ensures the derived lap delta is physically accurate to the actual qualifying result.
-
-**Zero external chart libraries** — All visualizations are custom SVG polylines with coordinate transforms written by hand. This demonstrates deep understanding of rendering primitives and produces smaller bundle sizes than Chart.js/Recharts (which add ~300KB gzipped).
 
 ---
 
-## 🔌 Real Data Integration (FastF1)
+## ⚙️ Engineering Design Decisions
 
-Replace the modelled arrays with real telemetry in under 20 lines:
+### Shared hover synchronization
+Cross-chart telemetry inspection requires every visualization to reference the same track distance.  
+This is centralized in **React Context**, eliminating deep prop chains and ensuring stable synchronization across independently rendered tabs.
 
-### Python extraction script
+### Deterministic telemetry modelling
+Each driver’s synthetic telemetry profile is generated from a **seeded Linear Congruential Generator (LCG)** keyed to the driver code.  
+This guarantees reproducible telemetry traces across renders and simplifies debugging and regression validation.
 
+### Smooth interpolation model
+Speed traces are interpolated using **smoothstep transitions** over ~75 driver-specific waypoints.  
+This produces physically plausible acceleration and braking curves that resemble real qualifying telemetry.
+
+### Lap-time normalization
+Raw telemetry traces are scaled against actual **2024 Bahrain Q3 lap times**, ensuring derived lap delta and corner losses remain grounded in realistic timing distributions.
+
+### Custom SVG rendering
+All visualizations are implemented with **hand-authored SVG primitives**, coordinate transforms, and polyline rendering.  
+This significantly reduces bundle size compared with external chart libraries while improving control over synchronized telemetry interactions.
+
+---
+
+## ⚡ Performance Considerations
+
+- Minimal visualization overhead using custom SVG primitives
+- Shared interaction state avoids duplicate re-renders
+- Stable deterministic data generation reduces recomputation
+- Small production bundle footprint
+- Reusable rendering primitives for future telemetry channels
+- Visualization logic decoupled from data ingestion layer
+
+---
+
+## 🔌 Real Telemetry Integration (FastF1)
+
+The data layer is intentionally decoupled from the UI layer.
+
+Swapping synthetic telemetry for real session data requires replacing the driver telemetry builder with FastF1-exported arrays.
+
+### Python extraction
 ```python
-# scripts/extract_session.py
 import fastf1
 import json
 
 fastf1.Cache.enable_cache('cache/')
 session = fastf1.get_session(2024, 'Bahrain', 'Q')
 session.load()
-
-drivers = ['VER', 'LEC', 'SAI', 'NOR', 'PIA']
-output = {}
-
-for code in drivers:
-    lap = session.laps.pick_driver(code).pick_fastest()
-    tel = lap.get_telemetry().add_distance()
-    
-    output[code] = {
-        'speed':    tel['Speed'].round().tolist(),
-        'throttle': tel['Throttle'].round().tolist(),
-        'brake':    (tel['Brake'].astype(float) * 100).round().tolist(),
-        'gear':     tel['nGear'].tolist(),
-        'rpm':      tel['RPM'].round().tolist(),
-        'distance': tel['Distance'].round().tolist(),
-        'lapTime':  lap['LapTime'].total_seconds(),
-    }
-
-with open('src/data/real_telemetry.json', 'w') as f:
-    json.dump(output, f)
-
-print("Done. Lap times:")
-for code in drivers:
-    lap = session.laps.pick_driver(code).pick_fastest()
-    print(f"  {code}: {lap['LapTime']}")
 ```
 
-### React side (3-line swap in telemetry.js)
-
+### React integration
 ```js
-// In src/data/telemetry.js — replace the buildDriverTelemetry function:
 import realData from './real_telemetry.json';
-
-export function buildDriverTelemetry(code) {
-  const d = realData[code];
-  if (!d) return buildModelledTelemetry(code); // fallback to model
-  return {
-    code,
-    speed:    d.speed,
-    throttle: d.throttle,
-    brake:    d.brake,
-    gear:     d.gear,
-    rpm:      d.rpm,
-    // tyre degradation stays modelled until FastF1 race data is loaded
-    softDeg: buildTyreDeg(90.45, 0.072, 1.8, 0.06, 20, mkRng(42)),
-    medDeg:  buildTyreDeg(91.18, 0.038, 0.6, 0.04, 28, mkRng(31)),
-    hardDeg: buildTyreDeg(91.82, 0.017, 0.3, 0.03, 38, mkRng(53)),
-    s: {
-      dist:     sub(d.distance),
-      speed:    sub(d.speed),
-      throttle: sub(d.throttle),
-      brake:    sub(d.brake),
-      gear:     sub(d.gear),
-      rpm:      sub(d.rpm),
-    }
-  };
-}
 ```
 
-The entire UI layer — all 8 tabs, all charts, all analysis — continues working without any changes. The data layer is fully decoupled from the presentation layer.
+All existing tabs and visualizations continue working without UI changes.
 
 ---
 
 ## 🚢 Deployment
 
 ### GitHub Pages
-
 ```bash
-# Add to package.json:
-# "homepage": "https://YOUR_USERNAME.github.io/f1-telemetry-platform"
-# "deploy": "gh-pages -d dist"
-
 npm run build
 npm run deploy
 ```
 
-Add `base: '/f1-telemetry-platform/'` to `vite.config.js` for subdirectory hosting.
+Ensure Vite base path matches the repository:
 
-### Vercel (zero-config)
+```js
+base: '/F1_Telemetry_Dashboard_v2/'
+```
 
+### Vercel
 ```bash
 npx vercel --prod
 ```
 
 ### Netlify
-
-Drag `/dist` to [app.netlify.com/drop](https://app.netlify.com/drop).
+Drag the `dist/` directory into Netlify Drop.
 
 ### Docker
-
 ```dockerfile
 FROM node:18-alpine AS builder
 WORKDIR /app
@@ -222,47 +238,48 @@ EXPOSE 80
 
 ---
 
-## 📈 Roadmap
+## 🎯 Why This Project
 
-- [ ] **Live FastF1 session loader** — Python FastAPI backend with real-time data
-- [ ] **All circuits** — Extend circuit.js to support all 24 2024 calendar tracks  
-- [ ] **Race pace mode** — Load race data (not just qualifying) for stint analysis
-- [ ] **Tyre stint detection** — Auto-detect stint boundaries from lap time variance
-- [ ] **Weather channel** — Overlay air/track temperature and rain flag
-- [ ] **ERS channel** — Energy deployment analysis (MGU-K, MGU-H)
-- [ ] **G-force traces** — Lateral and longitudinal acceleration channels
-- [ ] **Driver fingerprinting** — ML clustering of driving style across a season
-- [ ] **Pit stop optimizer** — Optimal pit lap under traffic and safety car scenarios
-- [ ] **Season heatmap** — Driver performance matrix across all 2024 rounds
+This project explores how modern frontend systems can model workflows typically used in race-engineering and motorsport analytics environments.
+
+The focus areas include:
+
+- deterministic telemetry simulation
+- synchronized multi-view analysis
+- scalable visualization primitives
+- strategy and tyre modelling
+- seamless real-data integration pathways
+
+The architecture is intentionally designed so that telemetry sources can evolve from synthetic modelling to real session ingestion with minimal surface-area changes.
 
 ---
 
-## 🧠 Telemetry Concepts Reference
+## 📈 Roadmap
 
-**Speed Trace** — Speed (km/h) vs distance (m). The sawtooth shape encodes the circuit: climbs on straights, drops at braking zones. Comparing traces shows exactly where gaps form.
+### Data & Simulation
+- [ ] Live FastF1 session ingestion
+- [ ] Race stint modelling
+- [ ] Weather and ERS telemetry channels
+- [ ] G-force channels
+- [ ] Multi-circuit support
 
-**Throttle ramp** — The quadratic opening of throttle on corner exit, limited by rear tyre traction. A 10m earlier ramp = ~0.05s per corner = ~0.7s/lap over 15 corners.
-
-**Trail braking** — Maintaining light brake pressure into the corner apex. Shifts weight forward to rotate the car without losing rear traction. Visible as a gradual brake release rather than a hard cutoff.
-
-**Lap delta (gap trace)** — Cumulative time difference, computed as `Δt = Δd/v` at each segment. Positive = reference driver ahead at that point; negative = comparison driver ahead. The single most actionable chart for race engineering.
-
-**Minimum corner speed** — Slowest point through a corner (at apex). Every 1 km/h ≈ 0.005s of lap time. 5 km/h average deficit over 12 corners = 0.3s — the gap between P3 and P7.
-
-**Tyre degradation cliff** — When soft compound rubber exceeds ~100°C operating temperature consistently, lap times increase exponentially. The "cliff" lap depends on track temperature, driving style, and car setup.
-
-**Undercut** — Pitting before a rival, setting fast laps on fresh tyres, emerging ahead after their stop. Viable when tyre delta > 0.8s/lap and gap < 22s (pit loss).
+### Intelligence & Optimization
+- [ ] Driver style clustering
+- [ ] Tyre stint boundary detection
+- [ ] Pit stop optimization under traffic
+- [ ] Season-wide performance heatmaps
+- [ ] Strategy risk scoring
 
 ---
 
 ## 📄 License
 
-MIT — see [LICENSE](LICENSE)
+MIT License — see [LICENSE](LICENSE)
 
 ---
 
 <div align="center">
 
-**[⭐ Star this repo](https://github.com/YOUR_USERNAME/f1-telemetry-platform)** · Built for motorsport engineers and data enthusiasts
+**Built for motorsport analytics, telemetry engineering, and advanced frontend systems design.**
 
 </div>
