@@ -17,7 +17,7 @@
 ## 📷 Preview
 
 ### Speed Trace
-![Speed Trace](./preview/speed-trace.png)
+![Speed Trace](./preview/Speed-Trace.png)
 
 ### Corner Analysis
 ![corner analysis](./preview/Corner_Analysis.png)
@@ -38,7 +38,7 @@
 ![strategy](./preview/Strategy.png)
 
 ### Ai-Insight
-![ai-insight](./preview/Ai-insight.png)
+![ai-insight](./preview/Ai-insights.png)
 
 ### winner prediction
 ![winner prediction](./preview/Winners_predictions.png)
