@@ -1,0 +1,16 @@
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg0:#07070d;--bg1:#0e0e18;--bg2:#14141f;--bg3:#1a1a28;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.14);
+  --txt:#eeeef5;--txt2:rgba(255,255,255,0.55);--txt3:rgba(255,255,255,0.28);
+  --red:#E8002D;--green:#22C55E;--amber:#F59E0B;--purple:#8B5CF6;
+  --font:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
+  --mono:'JetBrains Mono','Fira Code',monospace;
+  --r4:4px;--r8:8px;--r12:12px;
+}
+body{font-family:var(--font);background:var(--bg0);color:var(--txt);-webkit-font-smoothing:antialiased;min-height:100vh}
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:var(--bg1)}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+button{font-family:var(--font);cursor:pointer}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
